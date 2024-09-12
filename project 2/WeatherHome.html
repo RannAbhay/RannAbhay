@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body, html {
+      height: 100%;
+      /*margin: 0;*/
+    }
+
+    .box {
+      padding-left: 10px;
+      padding-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 250px;
+      height: 80px;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 5px;
+      animation-fill-mode: forwards;
+    }
+
+    .box button {
+      width: 70px;
+      height: 40px;
+      border-color: rgb(197, 66, 230);
+      border-width: 1px;
+      border-style: solid;
+      font-family: arial;
+      font-size: 17px;
+      background-color: rgb(135, 235, 160);
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .left-button , .middle-button{
+      animation:'';
+      animation-fill-mode: forwards;
+    }
+    .box button:hover{
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .back{
+      width: 80px;
+      height: 50px;
+      background-color: rgb(196, 186, 51);
+      position: absolute;
+      border-radius: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes middle-left {
+      0% { transform: translate(0, 0); }
+      33% { transform: translate(0, 100px); }
+      66% { transform: translate(-90px, 100px); }
+      100% { transform: translate(-90px, 0); }
+    }
+
+    @keyframes middle-right {
+      0% { transform: translate(0, 0); }
+      33% { transform: translate(0, 100px); }
+      66% { transform: translate(90px, 100px); }
+      100% { transform: translate(90px, 0); }
+    }
+
+    @keyframes left {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(90px, 0); }
+    }
+
+    @keyframes right {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(90px, 0); }
+    }
+  </style>
+</head>
+<body>
+    <div class="box">
+      <button class="left-button">Ram</button>
+      <button class="middle-button">Sita</button>
+      <button class="right-button">Brine</button>
+      <div class="back"></div>
+    </div>
+
+    <script>
+      document.querySelector('.left-button').addEventListener('click',() => {
+        addClass()
+      })
+      function addClass() {
+        document.querySelector('.left-button').classList.add('left-anime');
+        document.querySelector('.left-button').style.animation = 'left 2s ease';
+        document.querySelector('.middle-button').classList.add('middle-left-anime');
+        document.querySelector('.middle-button').style.animation = 'middle-left 2s ease';
+        document.querySelector('.left-anime').classList.add('middle-button');
+        document.querySelector('.middle-left-anime').classList.add('left-button');
+        
+        document.querySelector('.left-button').addEventListener('animationend', () => {
+          document.querySelector('.left-anime').classList.remove('left-button');
+          document.querySelector('.middle-left-anime').classList.remove('middle-button');
+          document.querySelector('.middle-button').classList.remove('left-anime');
+          document.querySelector('.left-button').classList.remove('middle-left-anime');
+          
+      });
+      }
+      
+    </script>
+</body>
+</html>
+   
