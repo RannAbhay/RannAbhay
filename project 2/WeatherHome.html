@@ -4,7 +4,6 @@
   <style>
     body, html {
       height: 100%;
-      /*margin: 0;*/
     }
 
     .box {
@@ -20,7 +19,6 @@
       left: 50%;
       transform: translateX(-50%);
       border-radius: 5px;
-      animation-fill-mode: forwards;
     }
 
     .box button {
@@ -36,16 +34,12 @@
       border-radius: 5px;
     }
 
-    .left-button , .middle-button{
-      animation:'';
-      animation-fill-mode: forwards;
-    }
-    .box button:hover{
+    .box button:hover {
       opacity: 0.8;
       cursor: pointer;
     }
 
-    .back{
+    .back {
       width: 80px;
       height: 50px;
       background-color: rgb(196, 186, 51);
@@ -82,33 +76,42 @@
 </head>
 <body>
     <div class="box">
-      <button class="left-button">Ram</button>
-      <button class="middle-button">Sita</button>
-      <button class="right-button">Brine</button>
+      <button class="left-button">A</button>
+      <button onclick="console.log('hellob')" class="middle-button">B</button>
+      <button class="right-button">C</button>
       <div class="back"></div>
     </div>
 
     <script>
-      document.querySelector('.left-button').addEventListener('click',() => {
-        addClass()
-      })
-      function addClass() {
-        document.querySelector('.left-button').classList.add('left-anime');
-        document.querySelector('.left-button').style.animation = 'left 2s ease';
-        document.querySelector('.middle-button').classList.add('middle-left-anime');
-        document.querySelector('.middle-button').style.animation = 'middle-left 2s ease';
-        document.querySelector('.left-anime').classList.add('middle-button');
-        document.querySelector('.middle-left-anime').classList.add('left-button');
-        
-        document.querySelector('.left-button').addEventListener('animationend', () => {
-          document.querySelector('.left-anime').classList.remove('left-button');
-          document.querySelector('.middle-left-anime').classList.remove('middle-button');
-          document.querySelector('.middle-button').classList.remove('left-anime');
-          document.querySelector('.left-button').classList.remove('middle-left-anime');
-          
+      document.querySelector('.left-button').addEventListener('click', () => {
+        addClass();
+        console.log('hello')
       });
-      }
+
+      const leftbutton = document.querySelector('.left-button');
+      const middlebutton = document.querySelector('.middle-button');
       
+      function addClass() {
+        // Apply the animations
+        leftbutton.style.animation = 'left 1s ease forwards';
+        middlebutton.style.animation = 'middle-left 1s ease forwards';
+        leftbutton.classList.add('left-anime');
+        middlebutton.classList.add('middle-anime');
+
+        
+        // Listen for the end of the animation
+        document.querySelector('.left-button').addEventListener('animationend', () => {
+          // Remove the animation property but keep the final position
+          document.querySelector('.left-anime').classList.remove('left-button');
+          document.querySelector('.middle-anime').classList.remove('middle-button');
+          document.querySelector('.left-anime').classList.add('middle-button');
+          document.querySelector('.middle-anime').classList.add('left-button');
+          document.querySelector('.middle-button').classList.remove('left-anime');
+          document.querySelector('.left-button').classList.remove('middle-anime');
+          leftbutton.style.transform = 'translateX(90px)';
+          middlebutton.style.transform = 'translateX(-90px)';
+        });
+      }
     </script>
 </body>
 </html>
