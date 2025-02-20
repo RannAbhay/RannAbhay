@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @RannAbhay
 - 👀 I’m interested in Web Development
-- Currenty, I just know HTML, CSS and JavaScript
+- Currenty, I just know HTML, CSS, ReactJS, NodeJS and JavaScript
 - Contact me if you need help in ur projects
 - my email :- vedantlegendx@gmail.com
 - Thx
